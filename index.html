@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>B. Venkat Rao — UI Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#534AB7;--purple-light:#EEEDFE;--purple-mid:#7F77DD;--purple-dark:#3C3489;
+  --coral:#D85A30;--coral-light:#FAECE7;--coral-mid:#F0997B;
+  --teal:#1D9E75;--teal-light:#E1F5EE;--teal-mid:#5DCAA5;
+  --amber:#BA7517;--amber-light:#FAEEDA;--amber-mid:#EF9F27;
+  --ink:#12102a;--ink-mid:#3a3652;--ink-soft:#6b6880;--ink-faint:#a8a6bc;
+  --surface:#ffffff;--surface-2:#f7f6ff;--surface-3:#eeedf8;
+  --border:rgba(83,74,183,0.12);--border-strong:rgba(83,74,183,0.22);
+  --radius:10px;--radius-lg:16px;--radius-xl:22px;
+  --font-display:'Syne',sans-serif;--font-body:'Inter',sans-serif
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--surface);color:var(--ink);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);height:60px}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:25px;letter-spacing:-0.02em;color:var(--purple-dark);text-decoration:none}
+.nav-logo span{color:var(--coral)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink-soft);text-decoration:none;letter-spacing:0.02em;transition:color 0.2s}
+.nav-links a:hover{color:var(--purple)}
+.nav-cta{font-size:13px;font-weight:600;background:var(--purple);color:#fff!important;padding:9px 20px;border-radius:100px;text-decoration:none;transition:background 0.2s}
+.nav-cta:hover{background:var(--purple-dark)!important;color:#fff!important}
+.wrap{max-width:100%;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+section{padding:2.5rem 0}
+#hero-section{background:linear-gradient(135deg,#26215C 0%,#534AB7 45%,#7F77DD 75%,#D85A30 100%);position:relative;overflow:hidden}
+#hero-section::before{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,0.04)}
+#hero-section::after{content:'';position:absolute;bottom:-120px;left:-60px;width:500px;height:500px;border-radius:50%;background:rgba(216,90,48,0.1)}
+.hero-inner{max-width:100%;margin:0 auto;padding:7.5rem clamp(1.5rem,5vw,3rem) 5.5rem;display:flex;align-items:flex-start;gap:3.5rem;position:relative;z-index:1}
+.hero-content{flex:1;min-width:0}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.22);color:#fff;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:1.6rem}
+.hero-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 3px rgba(52,211,153,0.3);animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-name{font-family:var(--font-display);font-size:clamp(1.5rem,6.5vw,4.5rem);font-weight:800;line-height:1.04;letter-spacing:-0.04em;color:#fff;margin-bottom:0.6rem}
+.hero-title{font-family:var(--font-display);font-size:clamp(1.3rem,2.5vw,1.75rem);font-weight:500;color:rgba(255,255,255,0.65);letter-spacing:-0.01em;margin-bottom:1.8rem}
+.hero-bio{font-size:15.5px;color:rgba(255,255,255,0.78);max-width:650px;line-height:1.8;margin-bottom:2.4rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-white{font-family:var(--font-body);font-size:14px;font-weight:600;background:#fff;color:var(--purple-dark);border:none;padding:13px 26px;border-radius:100px;text-decoration:none;transition:opacity 0.2s}
+.btn-white:hover{opacity:0.88}
+.btn-ghost{font-family:var(--font-body);font-size:14px;font-weight:500;background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.28);padding:13px 26px;border-radius:100px;text-decoration:none;transition:background 0.2s}
+.btn-ghost:hover{background:rgba(255,255,255,0.18)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.15)}
+.stat-num{font-family:var(--font-display);font-size:2.1rem;font-weight:800;letter-spacing:-0.05em;display:block;line-height:1;margin-bottom:4px}
+.stat-num.amber{color:var(--amber-mid)}.stat-num.coral{color:var(--coral-mid)}.stat-num.teal{color:var(--teal-mid)}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.5);font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.hero-aside{width:450px;flex-shrink:0;padding-top:2.5rem;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.profile-card{background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);border-radius:var(--radius-xl);padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%}
+.profile-avatar-wrap{position:relative;width:130px;height:130px}
+.profile-avatar{width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.3);display:block}
+.profile-avatar-fallback{width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,#7F77DD,#D85A30);border:3px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:-0.02em}
+.profile-online{position:absolute;bottom:6px;right:6px;width:16px;height:16px;border-radius:50%;background:#34d399;border:2.5px solid rgba(38,33,92,0.9);box-shadow:0 0 0 3px rgba(52,211,153,0.25)}
+.profile-name{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;letter-spacing:-0.01em;text-align:center}
+.profile-role-badge{background:rgba(216,90,48,0.25);color:#fdd0b8;border:1px solid rgba(216,90,48,0.4);font-size:11.5px;font-weight:600;padding:4px 14px;border-radius:100px}
+.profile-loc{font-size:12px;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:5px}
+.profile-loc svg{width:12px;height:12px;stroke:rgba(255,255,255,0.4);fill:none;stroke-width:2;flex-shrink:0}
+.profile-divider{width:100%;height:1px;background:rgba(255,255,255,0.1)}
+.profile-stats{display:flex;justify-content:space-around;width:100%}
+.ps-item{text-align:center}
+.ps-num{font-family:var(--font-display);font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.03em;display:block}
+.ps-lbl{font-size:10px;color:rgba(255,255,255,0.45);font-weight:500;text-transform:uppercase;letter-spacing:0.06em}
+.skill-cloud{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%}
+.skill-tag{font-size:11px;font-weight:500;padding:4px 11px;border-radius:100px;white-space:nowrap}
+.skill-tag.purple{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.18)}
+.skill-tag.coral-t{background:rgba(216,90,48,0.22);color:#fdd0b8;border:1px solid rgba(216,90,48,0.35)}
+.skill-tag.teal-t{background:rgba(29,158,117,0.22);color:#9FE1CB;border:1px solid rgba(29,158,117,0.35)}
+.section-header{margin-bottom:3rem}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple);margin-bottom:0.45rem}
+.section-title{font-family:var(--font-display);font-size:clamp(1.2rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;color:var(--ink)}
+.section-title span{color:var(--coral)}
+#skills{background:var(--surface-2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.skill-group{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem;transition:border-color 0.2s,transform 0.2s}
+.skill-group:hover{border-color:var(--purple-mid);transform:translateY(-2px)}
+.skill-group-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:0.9rem;font-size:17px}
+.sg-purple{background:var(--purple-light);color:var(--purple)}.sg-coral{background:var(--coral-light);color:var(--coral)}.sg-teal{background:var(--teal-light);color:var(--teal)}.sg-amber{background:var(--amber-light);color:var(--amber)}
+.skill-group-title{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.7rem}
+.skill-badges{display:flex;flex-wrap:wrap;gap:5px}
+.sbadge{font-size:11.5px;font-weight:500;padding:3px 10px;border-radius:100px}
+.sbadge-purple{background:var(--purple-light);color:#3C3489}.sbadge-coral{background:var(--coral-light);color:#712B13}.sbadge-teal{background:var(--teal-light);color:#085041}.sbadge-amber{background:var(--amber-light);color:#633806}
+#experience{background:var(--surface)}
+.timeline{display:flex;flex-direction:column}
+.timeline-item{display:grid;grid-template-columns:160px 1fr;gap:0 3rem;position:relative}
+.timeline-item:not(:last-child){padding-bottom:3rem}
+.timeline-left{padding-top:0.2rem}
+.timeline-period{font-size:12px;font-weight:600;color:var(--ink-faint);line-height:1.5;white-space:nowrap}
+.timeline-right{position:relative;padding-left:2rem;border-left:2px solid var(--purple-light)}
+.timeline-dot{position:absolute;left:-7px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2.5px solid var(--purple)}
+.timeline-dot.current{background:var(--purple);box-shadow:0 0 0 4px var(--purple-light)}
+.timeline-company{font-family:var(--font-display);font-size:1.08rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em}
+.timeline-role{display:inline-block;font-size:12px;font-weight:600;color:var(--purple);background:var(--purple-light);padding:3px 10px;border-radius:100px;margin:5px 0 1rem}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.timeline-bullets li{font-size:13.5px;color:var(--ink-mid);line-height:1.65;padding-left:1.2em;position:relative}
+.timeline-bullets li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--coral-mid)}
+#projects{background:var(--surface-2)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(30%,1fr));gap:1.3rem}
+.project-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-xl);padding:1.8rem;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.project-card.pc-purple::before{background:linear-gradient(90deg,var(--purple),var(--purple-mid))}
+.project-card.pc-coral::before{background:linear-gradient(90deg,var(--coral),var(--coral-mid))}
+.project-card.pc-teal::before{background:linear-gradient(90deg,var(--teal),var(--teal-mid))}
+.project-card:hover{border-color:var(--purple-mid);transform:translateY(-3px)}
+.project-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;margin-top:0.4rem}
+.pi-purple{background:var(--purple-light)}.pi-purple svg{stroke:var(--purple)}
+.pi-coral{background:var(--coral-light)}.pi-coral svg{stroke:var(--coral)}
+.pi-teal{background:var(--teal-light)}.pi-teal svg{stroke:var(--teal)}
+.project-icon svg{width:22px;height:22px;fill:none;stroke-width:1.8}
+.project-name{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:0.55rem;letter-spacing:-0.01em}
+.project-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.68;margin-bottom:1.3rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.project-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:var(--surface-3);color:var(--ink-mid);border:1px solid var(--border)}
+#contact{background:linear-gradient(135deg,#12102a 0%,#26215C 50%,#1D9E75 100%);position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(93,202,165,0.07)}
+.contact-wrap{max-width:100%;margin:0 auto;padding:2rem clamp(1.5rem,5vw,3rem);position:relative;z-index:1}
+.contact-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:0.45rem}
+.contact-title{font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.2rem);font-weight:800;letter-spacing:-0.03em;color:#fff;margin-bottom:3rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-blurb{font-size:15.5px;color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:1rem}
+.contact-link{display:flex;align-items:center;gap:0.9rem;font-size:14px;font-weight:500;color:rgba(255,255,255,0.8);text-decoration:none;transition:color 0.2s}
+.contact-link:hover{color:#fff}
+.contact-link-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-link-icon svg{width:18px;height:18px;stroke:rgba(255,255,255,0.75);fill:none;stroke-width:1.8}
+.avail-card{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:var(--radius-xl);padding:2rem}
+.avail-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+.avail-dot{width:10px;height:10px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,0.2)}
+.avail-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#fff}
+.avail-detail{font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:1.5rem}
+.avail-tags{display:flex;flex-wrap:wrap;gap:7px}
+.avail-tag{font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:100px}
+.at-teal{background:rgba(29,158,117,0.2);color:var(--teal-mid);border:1px solid rgba(29,158,117,0.3)}
+.at-purple{background:rgba(83,74,183,0.25);color:#AFA9EC;border:1px solid rgba(127,119,221,0.3)}
+.at-amber{background:rgba(186,117,23,0.2);color:var(--amber-mid);border:1px solid rgba(186,117,23,0.3)}
+footer{padding:1.8rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.07);background:#12102a}
+footer p{font-size:12.5px;color:rgba(255,255,255,1)}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+.social-icon{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid #fff;
+    border-radius:50%;
+    color:#0A66C2;
+    font-size:18px;
+    text-decoration:none;
+    transition:.4s;
+}
+
+.social-icon:hover{
+    background:#0A66C2;
+    color:#fff;
+    transform:translateY(-5px);
+    box-shadow:0 0 20px rgba(10,102,194,.6);
+}
+
+a{text-decoration:none;}
+@media(max-width:720px){
+  .hero-inner{flex-direction:column;padding-top:6rem}
+  .hero-aside{width:100%;padding-top:0}
+  .timeline-item{grid-template-columns:1fr}
+  .timeline-left{padding-bottom:0.3rem}
+  .timeline-right{padding-left:1.3rem}
+  .contact-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.8rem}
+  nav .nav-links{display:none}
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    gap: 1.3rem;
+}
+
+.projects-grid a{word-break:break-word;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">BVR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<div id="hero-section">
+  <div class="hero-inner" id="about">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="hero-dot"></span>Available for work</div>
+      <h1 class="hero-name">B. Venkat Rao</h1>
+      <p class="hero-title">UI Developer</p>
+      <p class="hero-bio">UI Developer with 8 years of experience building responsive and user-friendly web interfaces using HTML, CSS, Bootstrap, jQuery, and JavaScript. Proficient in developing cross-browser compatible applications and creating reusable UI components with clean and maintainable code. Possess basic knowledge of React JS and modern frontend development concepts. Experienced in delivering responsive layouts and optimizing web performance for production environments. A collaborative team player committed to providing high-quality user experiences and continuous learning.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-white">Get in touch</a>
+        <a href="#experience" class="btn-ghost">View experience</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="stat-num amber">10+</span><span class="stat-label">Years exp.</span></div>
+        <div><span class="stat-num coral">40+</span><span class="stat-label">Screens shipped</span></div>
+        <div><span class="stat-num teal">4</span><span class="stat-label">Companies</span></div>
+      </div>
+    </div>
+    <aside class="hero-aside">
+      <div class="profile-card">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar-fallback">VR</div>
+          <!-- <span class="profile-online"></span> -->
+        </div>
+        <p class="profile-name">B. Venkat Rao</p>
+        <span class="profile-role-badge">UI Developer</span>
+        <p class="profile-loc">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Hyderabad, India
+        </p>
+        <div class="profile-divider"></div>
+        <div class="profile-stats">
+          <div class="ps-item"><span class="ps-num">10+</span><span class="ps-lbl">Years</span></div>
+          <div class="ps-item"><span class="ps-num">40+</span><span class="ps-lbl">Screens</span></div>
+          <div class="ps-item"><span class="ps-num">4</span><span class="ps-lbl">Companies</span></div>
+        </div>
+        <div class="profile-divider"></div>
+        <div class="skill-cloud">
+          <span class="skill-tag coral-t">React JS</span>
+          <span class="skill-tag coral-t">HTML5</span>
+          <span class="skill-tag coral-t">CSS3</span>
+          <span class="skill-tag purple">JavaScript ES6+</span>
+          <span class="skill-tag purple">SCSS</span>
+          <span class="skill-tag teal-t">Tailwind CSS</span>
+          <span class="skill-tag teal-t">Figma</span>
+          <span class="skill-tag teal-t">Photoshop</span>
+          <span class="skill-tag purple">Bootstrap 4/5</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-header">
+      <p class="section-eyebrow">Toolkit</p>
+      <h2 class="section-title">Technical <span>skills</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-icon sg-purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <p class="skill-group-title">UI Core</p>
+        <div class="skill-badges"><span class="sbadge sbadge-purple">HTML5</span><span class="sbadge sbadge-purple">CSS3</span><span class="sbadge sbadge-purple">JavaScript ES6+</span><span class="sbadge sbadge-purple">Bootstrap 4/5</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon sg-coral"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+        <p class="skill-group-title">React</p>
+        <div class="skill-badges"><span class="sbadge sbadge-coral">React JS</span><span class="sbadge sbadge-coral">React Hooks</span><span class="sbadge sbadge-coral">Components</span><span class="sbadge sbadge-coral">React Router</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon sg-teal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <p class="skill-group-title">Styling</p>
+        <div class="skill-badges"><span class="sbadge sbadge-teal">SCSS</span><span class="sbadge sbadge-teal">Sass</span><span class="sbadge sbadge-teal">CSS Modules</span><span class="sbadge sbadge-teal">Flexbox</span><span class="sbadge sbadge-teal">Grid</span><span class="sbadge sbadge-teal">Tailwind</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon sg-amber"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <p class="skill-group-title">Build & Tooling</p>
+        <div class="skill-badges"><span class="sbadge sbadge-amber">Vite</span><span class="sbadge sbadge-amber">Webpack</span><span class="sbadge sbadge-amber">Babel</span><span class="sbadge sbadge-amber">npm</span><span class="sbadge sbadge-amber">yarn</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon sg-purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <p class="skill-group-title">Design Handoff</p>
+        <div class="skill-badges"><span class="sbadge sbadge-purple">Figma</span><span class="sbadge sbadge-purple">Adobe Photoshop</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-icon sg-teal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <p class="skill-group-title">Performance & Debug</p>
+        <div class="skill-badges"><span class="sbadge sbadge-teal">Lighthouse</span><span class="sbadge sbadge-teal">Chrome DevTools</span><span class="sbadge sbadge-teal">Firefox DevTools</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-header">
+      <p class="section-eyebrow">Career</p>
+      <h2 class="section-title">Work <span>experience</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left"><p class="timeline-period">Mar 2026 – Present</p></div>
+        <div class="timeline-right">
+          <div class="timeline-dot current"></div>
+          <p class="timeline-company">Zlicc Global Pvt Ltd</p>
+          <span class="timeline-role">UI Developer · Hyderabad</span>
+          <ul class="timeline-bullets">
+            <li>Developed responsive and pixel-perfect UI screens from Figma designs using HTML5, CSS3, JavaScript, BOOTSTRAP4/5, and React JS.</li>
+            <li>Built reusable React components and optimized layouts for mobile, tablet, and desktop devices.</li>
+            <li>Improved cross-browser compatibility and fixed UI issues across Chrome, and Safari.</li>
+            <li>AI-Assisted Development Leveraged ChatGPT, Claude AI, and Google Gemini for code generation, debugging, documentation, UI ideas, and improving development productivity.</li>
+            <li>Collaborated with designers and backend developers to deliver production-ready interfaces.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><p class="timeline-period">Jan 2021 – Feb 2026</p></div>
+        <div class="timeline-right">
+          <div class="timeline-dot"></div>
+          <p class="timeline-company">Vouch Pro Services Pvt Ltd</p>
+          <span class="timeline-role">UI Developer · Hyderabad</span>
+          <ul class="timeline-bullets">
+            <li>Developed responsive web pages using HTML5, CSS3, JavaScript, Bootstrap 4/5 and React JS.</li>
+            <li>Built reusable React components and maintained existing UI modules.</li>
+            <li>Implemented mobile-first CSS breakpoints validated across a 3-device matrix for every release.</li>
+            <li>Ensured cross-browser compatibility and responsive layouts.</li>
+            <li>Fixed UI bugs and improved page performance.</li>
+            <li>Collaborated with backend teams to deliver production-ready features.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><p class="timeline-period">Jan 2020 – Nov 2020</p></div>
+        <div class="timeline-right">
+          <div class="timeline-dot"></div>
+          <p class="timeline-company">Excel Soft</p>
+          <span class="timeline-role">Freelance Frontend Developer · Hyderabad</span>
+          <ul class="timeline-bullets">
+            <li>Delivered fully responsive UIs across multiple client builds using HTML5, CSS3, BOOTSTRAP 3/4, jQuery and JavaScript.</li>
+			<li>Ensured cross-browser compatibility and responsive layouts.</li>
+            <li>Trimmed client-side lag by reducing repeated renders and heavy state updates.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><p class="timeline-period">Mar 2016 – Jan 2020</p></div>
+        <div class="timeline-right">
+          <div class="timeline-dot"></div>
+          <p class="timeline-company">Excel Soft Services (I) Pvt Ltd</p>
+          <span class="timeline-role">UI / Frontend Developer · Hyderabad</span>
+          <ul class="timeline-bullets">
+           <li>Developed responsive web pages using HTML5, CSS3, jQuery JavaScript, and BOOTSTRAP 3.</li>
+           <li>Ensured cross-browser compatibility and responsive layouts.</li>
+            <li>Rebuilt shared patterns into reusable HTML modules, reducing duplicate logic across 14 internal views.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-header">
+      <p class="section-eyebrow">Portfolio</p>
+      <h2 class="section-title">Selected <span>Projects</span></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card pc-purple">
+        <div class="project-icon pi-purple"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <p class="project-name">Virtual Events Platforms<br/>
+			<a href="https://www.amis-development.com/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://www.amis-development.com/</a><br/>
+			<a href="https://dchlive.in/TAFE50KDYNAMAHOTSAV/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://dchlive.in/TAFE50KDYNAMAHOTSAV/</a><br/>
+			<a href="https://live.zlicc.com/edelweiss140526/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://live.zlicc.com/edelweiss140526/</a><br/>
+			<a href="https://www.leaderspeaks.in/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://www.leaderspeaks.in/</a><br/>
+			<a href="https://live.zlicc.com/edelweiss070726/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://live.zlicc.com/edelweiss070726/</a><br/>
+			<a href="https://live.zlicc.com/edelweiss190526/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://live.zlicc.com/edelweiss190526/</a><br/>
+			<a href="https://click2fingage.com/HDFCBANKShowcase4/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);word-break: break-word;">https://click2fingage.com/HDFCBANKShowcase4/</a></p>
+        <p class="project-desc">Responsive UI modules for webinars and virtual conferences. Implemented real-time interaction interfaces that improved overall UI performance.</p>
+        <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">Bootstrap 4</span><span class="project-tag">jQuery</span><span class="project-tag">JavaScript</span></div>
+      </div>
+      <div class="project-card pc-coral">
+        <div class="project-icon pi-coral"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div>
+        <p class="project-name">Packers & Movers Service Website<br/>
+			<a href="https://www.movers.com/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://www.movers.com/</a><br/>
+			<a href="https://www.usrelocation.com/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://www.usrelocation.com/</a><br/>
+			<a href="https://www.pyar.com/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://www.pyar.com/</a>
+		</p>
+        <p class="project-desc">Fully responsive mobile-first website built from scratch with optimised layouts across mobile, tablet, and desktop viewports.</p>
+        <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">Bootstrap</span><span class="project-tag">Tailwind</span><span class="project-tag">jQuery</span><span class="project-tag">JavaScript</span></div>
+      </div>
+      <div class="project-card pc-teal">
+        <div class="project-icon pi-teal"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-1a9 9 0 0118 0v1"/></svg></div>
+        <p class="project-name">Company Websites<br/>
+			<a href="http://excelsoftservices.com/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">http://excelsoftservices.com/</a><br/>
+			<a href="https://www.enablex.io/" target="_blank" style="color:#000;font-size:clamp(10px,2vw,12px);">https://www.enablex.io/</a><br/>
+			
+		</p>
+        <p class="project-desc">Converted Figma designs into a pixel-perfect company website with reusable components and consistent brand styling across all pages.</p>
+        <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">jQuery</span><span class="project-tag">Bootstrap 3</span><span class="project-tag">JavaScript</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrap">
+    <p class="contact-eyebrow">Let's work together</p>
+    <h2 class="contact-title">Get in touch</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-blurb">I'm a UI developer with 10 years of experience building clean, performant interfaces. Currently open to full-time roles, contracts, and freelance projects.</p>
+        <div class="contact-links">
+          <a href="mailto:venkat163455@gmail.com" class="contact-link">
+            <span class="contact-link-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            venkat163455@gmail.com
+          </a>
+          <a href="tel:+917702054784" class="contact-link">
+            <span class="contact-link-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg></span>
+            +91 770 205 4784
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-link-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            Hyderabad, Telangana, India
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="avail-card">
+          <div class="avail-header"><span class="avail-dot"></span><span class="avail-title">Open to opportunities</span></div>
+          <p class="avail-detail">Available for full-time UI / Frontend Developer roles and freelance projects. Quick to onboard, comfortable in product and agency settings.</p>
+          <div class="avail-tags">
+            <span class="avail-tag at-teal">Full-time</span>
+            <span class="avail-tag at-purple">Part-time</span>
+            <span class="avail-tag at-purple">Freelance</span>
+            <span class="avail-tag at-amber">Contract</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 B. Venkat Rao</p>
+  <p>
+	<a href="https://www.linkedin.com/in/venkatraob-ui" target="_blank" class="social-icon">
+		<i class="fa-brands fa-linkedin-in"></i>
+	</a>
+  </p>
+  <p>UI Developer · Hyderabad, India</p>
+</footer>
+
+</body>
+</html>
